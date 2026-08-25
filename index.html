@@ -1,1 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>ANIZZZY — ANIXZZ</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body{
+  background:#f7f7f7;
+  color:#111;
+}
+
+header{
+  background:#080808;
+  color:white;
+  padding:18px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.logo{
+  font-size:25px;
+  letter-spacing:5px;
+  font-weight:bold;
+}
+
+.cart{
+  font-size:24px;
+  cursor:pointer;
+}
+
+.hero{
+  height:330px;
+  background:linear-gradient(135deg,#d9a7ff,#ffb6d9);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+.hero h1{
+  font-size:42px;
+  letter-spacing:5px;
+}
+
+.hero p{
+  margin:12px 0 20px;
+  font-size:16px;
+}
+
+.btn{
+  background:#111;
+  color:white;
+  border:0;
+  padding:13px 25px;
+  border-radius:25px;
+  font-weight:bold;
+  cursor:pointer;
+  touch-action: manipulation;
+}
+
+.categories{
+  padding:25px 15px;
+}
+
+.categories h2,
+.products h2{
+  margin-bottom:18px;
+}
+
+.cat-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.cat{
+  background:white;
+  padding:18px 5px;
+  border-radius:12px;
+  text-align:center;
+  box-shadow:0 2px 10px #ddd;
+  font-size:13px;
+  cursor:pointer;
+  touch-action: manipulation;
+}
+
+.products{
+  padding:10px 15px 100px;
+}
+
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+.product{
+  background:white;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 2px 10px #ddd;
+}
+
+.product img{
+  width:100%;
+  height:190px;
+  object-fit:cover;
+  pointer-events:none;
+  background:#eee;
+}
+
+.info{
+  padding:12px;
+}
+
+.info h3{
+  font-size:16px;
+  margin-bottom:7px;
+}
+
+.price{
+  font-weight:bold;
+  font-size:17px;
+  margin-bottom:10px;
+}
+
+.order{
+  width:100%;
+  background:#111;
+  color:white;
+  border:0;
+  padding:10px;
+  border-radius:8px;
+  cursor:pointer;
+  touch-action: manipulation;
+}
+
+.empty-msg{
+  grid-column:1/-1;
+  text-align:center;
+  padding:40px 10px;
+  color:#888;
+  font-size:14px;
+}
+
+.whatsapp{
+  position:fixed;
+  right:18px;
+  bottom:75px;
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  background:#25D366;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:27px;
+  z-index:20;
+  text-decoration:none;
+  touch-action: manipulation;
+}
+
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:62px;
+  background:white;
+  border-top:1px solid #ddd;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:15;
+}
+
+.bottom div{
+  text-align:center;
+  font-size:12px;
+  cursor:pointer;
+  touch-action: manipulation;
+}
+
+.bottom span{
+  display:block;
+  font-size:20px;
+  margin-bottom:3px;
+}
+
+footer{
+  background:#080808;
+  color:white;
+  text-align:center;
+  padding:30px 15px;
+}
+
+@media(max-width:380px){
+  .cat-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">ANIZZZY</div>
+  <div class="cart" onclick="alert('Cart coming soon!')">🛒</div>
+</header>
+
+<section class="hero">
+  <h1>ANIXZZ</h1>
+  <p>Fashion • Beauty • Lifestyle</p>
+
+  <button class="btn"
+    onclick="document.getElementById('products').scrollIntoView()">
+    SHOP NOW
+  </button>
+</section>
+
+<section class="categories">
+
+  <h2>Shop Categories</h2>
+
+  <div class="cat-grid">
+    <div class="cat" onclick="document.getElementById('products').scrollIntoView()">👠<br>Footwear</div>
+    <div class="cat" onclick="document.getElementById('products').scrollIntoView()">👕<br>Clothing</div>
+    <div class="cat" onclick="document.getElementById('products').scrollIntoView()">💄<br>Cosmetics</div>
+    <div class="cat" onclick="document.getElementById('products').scrollIntoView()">✨<br>Accessories</div>
+  </div>
+
+</section>
+
+<section class="products" id="products">
+
+<h2>Featured Products</h2>
+
+<div class="product-grid" id="productGrid">
+  <div class="empty-msg">Loading products...</div>
+</div>
+
+</section>
+
+
+<a class="whatsapp"
+href="https://wa.me/917804996361"
+target="_blank">
+💬
+</a>
+
+
+<div class="bottom">
+
+  <div onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <span>⌂</span>
+    Home
+  </div>
+
+  <div onclick="alert('Wishlist coming soon!')">
+    <span>♡</span>
+    Wishlist
+  </div>
+
+  <div onclick="alert('Cart coming soon!')">
+    <span>🛒</span>
+    Cart
+  </div>
+
+  <div onclick="alert('Account coming soon!')">
+    <span>👤</span>
+    Account
+  </div>
+
+  <div onclick="alert('Search coming soon!')">
+    <span>⌕</span>
+    Search
+  </div>
+
+</div>
+
+
+<footer>
+
+  <h2>ANIZZZY</h2>
+
+  <p>Powered by ANIXZZ</p>
+
+  <br>
+
+  <p>© 2026 ANIZZZY. All Rights Reserved.</p>
+
+</footer>
