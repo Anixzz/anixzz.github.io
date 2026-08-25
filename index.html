@@ -318,3 +318,89 @@ target="_blank">
   <p>© 2026 ANIZZZY. All Rights Reserved.</p>
 
 </footer>
+<!-- Firebase -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getFirestore,
+    collection,
+    getDocs,
+    query,
+    orderBy
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDAo5sQs_L-Jele0PTPS9EK4Iv5yNqoBtk",
+    authDomain: "anixzzy-store.firebaseapp.com",
+    projectId: "anixzzy-store",
+    storageBucket: "anixzzy-store.firebasestorage.app",
+    messagingSenderId: "1048658919986",
+    appId: "1:1048658919986:web:3e2b2518de044174bbf22b",
+    measurementId: "G-VY1DY7GRMF"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const WHATSAPP_NUMBER = "917804996361";
+
+  window.order = function(product, price){
+    let message =
+      "Hello ANIZZZY!%0A%0A" +
+      "I want to order:%0A" +
+      product +
+      "%0APrice: ₹" +
+      price;
+
+    window.open(
+      "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + message,
+      "_blank"
+    );
+  };
+
+  async function loadProducts(){
+    const grid = document.getElementById("productGrid");
+
+    try {
+      const q = query(collection(db, "products"), orderBy("createdAt", "desc"));
+      const snapshot = await getDocs(q);
+
+      if (snapshot.empty) {
+        grid.innerHTML = '<div class="empty-msg">No products yet. Add some from the admin page!</div>';
+        return;
+      }
+
+      grid.innerHTML = "";
+
+      snapshot.forEach((doc) => {
+        const p = doc.data();
+        const name = (p.name || "").replace(/'/g, "\\'");
+        const priceVal = p.price || "0";
+        const img = p.image || "https://via.placeholder.com/400x400?text=No+Image";
+
+        const card = document.createElement("div");
+        card.className = "product";
+        card.innerHTML = `
+          <img src="${img}" alt="${p.name || ''}">
+          <div class="info">
+            <h3>${p.name || "Unnamed"}</h3>
+            <div class="price">₹${priceVal}</div>
+            <button class="order" onclick="order('${name}','${priceVal}')">
+              Order on WhatsApp
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+    } catch (err) {
+      console.error("Error loading products:", err);
+      grid.innerHTML = '<div class="empty-msg">Could not load products. Please refresh.</div>';
+    }
+  }
+
+  loadProducts();
+</script>
+
+</body>
+</html>
