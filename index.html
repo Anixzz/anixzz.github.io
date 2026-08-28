@@ -233,7 +233,7 @@ footer{
 
 <header>
   <div class="logo">ANIZZZY</div>
-  <div class="cart" onclick="alert('Cart coming soon!')">🛒</div>
+  <div class="cart" onclick="document.getElementById('products').scrollIntoView()">🛒</div>
 </header>
 
 <section class="hero">
@@ -251,7 +251,7 @@ footer{
   <h2>Shop Categories</h2>
 
   <div class="cat-grid">
-    <div class="cat" onclick="document.getElementById('products').scrollIntoView()">👠<br>Footwear</div>
+    <div class="cat" onclick="document.getElementById('products').scrollIntoView()">⌚<br>Watches</div>
     <div class="cat" onclick="document.getElementById('products').scrollIntoView()">👕<br>Clothing</div>
     <div class="cat" onclick="document.getElementById('products').scrollIntoView()">💄<br>Cosmetics</div>
     <div class="cat" onclick="document.getElementById('products').scrollIntoView()">✨<br>Accessories</div>
@@ -284,22 +284,22 @@ target="_blank">
     Home
   </div>
 
-  <div onclick="alert('Wishlist coming soon!')">
+  <div onclick="document.getElementById('products').scrollIntoView()">
     <span>♡</span>
     Wishlist
   </div>
 
-  <div onclick="alert('Cart coming soon!')">
+  <div onclick="document.getElementById('products').scrollIntoView()">
     <span>🛒</span>
     Cart
   </div>
 
-  <div onclick="alert('Account coming soon!')">
+  <div onclick="document.getElementById('products').scrollIntoView()">
     <span>👤</span>
     Account
   </div>
 
-  <div onclick="alert('Search coming soon!')">
+  <div onclick="document.getElementById('products').scrollIntoView()">
     <span>⌕</span>
     Search
   </div>
@@ -318,6 +318,8 @@ target="_blank">
   <p>© 2026 ANIZZZY. All Rights Reserved.</p>
 
 </footer>
+
+
 <!-- Firebase -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
